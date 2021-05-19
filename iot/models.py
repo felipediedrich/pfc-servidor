@@ -8,8 +8,12 @@ class Dispositivo(models.Model):
     status = models.BooleanField(default=False)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
+    def __str__(self): return self.name
+
 class Agendamento(models.Model):
     id = models.AutoField(primary_key=True)
     dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='dispositivo')
     name = models.CharField(null=False,max_length=100)
     horario = models.TimeField()
+    
+    def __str__(self): return self.name
