@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-import django_heroku
+import dj_database_url
 from pathlib import Path
 import os
 
@@ -23,6 +23,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-d-%a7*(y%es=47nt+e7k=lhc53!vj#_$y^q0%rrr42s(&la$8%'
+DATABASE_URL = 'postgres://ywsgoyizxtvivl:00386466dba2eafb814ea5fa12a6726f8ebc7aa1ab669696bc9dd7d2d909c6dc@ec2-50-19-176-236.compute-1.amazonaws.com:5432/d7mas6hp9sa6qh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -131,4 +132,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
+
+DATABASES = {'default': dj_database_url.config()}
