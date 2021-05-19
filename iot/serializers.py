@@ -16,7 +16,7 @@ class AgendamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agendamento
         fields = [
-            "dispositivo__name",
+            "dispositivo_name",
             "name",
             "horario",
         ]
