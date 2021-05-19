@@ -5,11 +5,6 @@ from iot.api import DispositivoViewSet, AgendamentoViewSet
 
 from servidor.api import UserViewSet
 
-# , serializers, viewsets
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-
 router = routers.DefaultRouter()
 router.register(r"dispositivos", DispositivoViewSet)
 router.register(r"agendamento", AgendamentoViewSet)
