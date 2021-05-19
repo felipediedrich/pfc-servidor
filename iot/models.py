@@ -10,6 +10,6 @@ class Dispositivo(models.Model):
 
 class Agendamento(models.Model):
     id = models.AutoField(primary_key=True)
-    dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='datacollector')
+    dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='dispositivo')
     name = models.CharField(null=False,max_length=100)
     horario = models.TimeField()
