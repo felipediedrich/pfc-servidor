@@ -3,8 +3,7 @@ from django.contrib import admin
 from iot.models import Dispositivo, Agendamento
 
 class DispositivoAdmin(admin.ModelAdmin):
-    list_display = ('name','status','user')
-    list_filter = ('user',)
+    list_display = ('name','status',)
 
 class AgendamentoAdmin(admin.ModelAdmin):
     list_display = ('name','horario')
