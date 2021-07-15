@@ -31,9 +31,15 @@ ALLOWED_HOSTS = [
     'pfc-servidor.herokuapp.com',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = False 
+
+# this allows cookie being passed cross domain    
+CORS_ALLOW_CREDENTIALS = True 
+
+# this is the list of allowed origins for cross domain ajax
+CORS_ORIGIN_WHITELIST = ( 'https://pfc-aplicacao.herokuapp.com/',)
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
