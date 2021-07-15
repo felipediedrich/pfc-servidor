@@ -5,6 +5,7 @@ class Dispositivo(models.Model):
     id = models.AutoField(primary_key=True)
     hardware_id = models.CharField(max_length=255)
     name = models.CharField(null=False,max_length=100)
+    icon = models.CharField(max_length=255)
     status = models.BooleanField(default=False)
     # user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
