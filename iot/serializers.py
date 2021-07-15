@@ -6,7 +6,7 @@ from iot.models import Dispositivo, Agendamento
 class DispositivoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Dispositivo
-        fields = ['url','id','hardware_id','name','status']
+        fields = ['url','id','hardware_id','name','icon','status']
 
 class AgendamentoSerializer(serializers.ModelSerializer):
     class Meta:
