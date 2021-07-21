@@ -26,18 +26,20 @@ SECRET_KEY = 'django-insecure-d-%a7*(y%es=47nt+e7k=lhc53!vj#_$y^q0%rrr42s(&la$8%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    'pfc-servidor.herokuapp.com',
-]
-
-CORS_ORIGIN_ALLOW_ALL = False 
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_ALLOW_ALL = True 
 
 # this allows cookie being passed cross domain    
-CORS_ALLOW_CREDENTIALS = True 
+# CORS_ALLOW_CREDENTIALS = True 
 
 # this is the list of allowed origins for cross domain ajax
-CORS_ORIGIN_WHITELIST = ( 'https://pfc-aplicacao.herokuapp.com/',)
+# CORS_ORIGIN_WHITELIST = (
+#     'https://pfc-aplicacao.herokuapp.com/',
+#     'https://pfc-aplicacao.herokuapp.com/#/dashboard',
+#     'http://pfc-aplicacao.herokuapp.com/',
+#     'http://pfc-aplicacao.herokuapp.com/#/dashboard',
+#     'localhost:8100'
+# )
 
 # Application definition
 INSTALLED_APPS = [
@@ -52,6 +54,15 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+# CORS_ALLOW_HEADERS = (
+#         'x-requested-with',
+#         'content-type',
+#         'accept',
+#         'origin',
+#         'authorization',
+#         'x-csrftoken'
+# )
+
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -61,12 +72,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
-MIDDLEWARE_CLASSES = (
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-)
+# MIDDLEWARE_CLASSES = (
+#     'corsheaders.middleware.CorsMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+# )
 
 ROOT_URLCONF = 'servidor.urls'
 
