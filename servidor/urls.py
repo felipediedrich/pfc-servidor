@@ -13,8 +13,8 @@ admin_router = routers.DefaultRouter()
 admin_router.register(r'users', UserViewSet)
 
 urlpatterns = [
-    path('api/', include(user_router.urls)),
-    path('api/admin/', include(admin_router.urls)),
+    path('', include(user_router.urls)),
+    path('api-admin/', include(admin_router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
