@@ -8,7 +8,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 router = routers.DefaultRouter()
 router.register(r"dispositivos", DispositivoViewSet)
 router.register(r"agendamento", AgendamentoViewSet)
-router.register(r"agendamento", AgendamentoViewSet)
 router.register(r"users", UserViewSet)
 
 urlpatterns = [
