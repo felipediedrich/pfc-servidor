@@ -2,7 +2,6 @@ from django.urls import path, include
 from django.contrib import admin
 from rest_framework import routers
 from iot.api import DispositivoViewSet, AgendamentoViewSet
-
 from servidor.api import UserViewSet
 
 user_router = routers.DefaultRouter()
