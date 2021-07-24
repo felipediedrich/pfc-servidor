@@ -9,11 +9,11 @@ router = routers.DefaultRouter()
 router.register(r"dispositivos", DispositivoViewSet)
 router.register(r"agendamento", AgendamentoViewSet)
 router.register(r"agendamento", AgendamentoViewSet)
+router.register(r"users", UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path('register/',include('rest_auth.registration.urls'))
 ]
