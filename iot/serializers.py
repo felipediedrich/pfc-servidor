@@ -8,8 +8,8 @@ class DispositivoSerializer(serializers.ModelSerializer):
         fields = ['url','mac','name','icon','status']
 
 class AgendamentoSerializer(serializers.ModelSerializer):
-    dispositivo_name = serializers.CharField(source='dispositivo.name')
+    # dispositivo_name = serializers.CharField(source='dispositivo.name')
 
     class Meta:
         model = Agendamento
-        fields = ['url','id','name','horario','dispositivo_name']
+        fields = ['url','id','name','horario','dispositivo']
