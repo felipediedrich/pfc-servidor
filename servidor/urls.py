@@ -12,9 +12,6 @@ router.register(r"dispositivos", DispositivoViewSet)
 router.register(r"agendamento", AgendamentoViewSet)
 router.register(r"users", UserViewSet)
 
-# hardware = routers.DefaultRouter()
-# hardware.register(r"status/<mac>/", OnOff, basename = "hardware")
-
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
