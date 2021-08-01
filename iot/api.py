@@ -23,9 +23,9 @@ class DispositivoViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
-    def get_queryset(self):
-        queryset = self.get_queryset().filter(owner=self.request.user)
-        return queryset
+    # def get_queryset(self):
+    #     queryset = self.get_queryset().filter(owner=self.request.user)
+    #     return queryset
 
     def list(self, request, *args, **kwargs):
         queryset = self.filter_queryset(self.get_queryset())
