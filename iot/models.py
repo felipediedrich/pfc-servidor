@@ -15,5 +15,11 @@ class Agendamento(models.Model):
     dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='dispositivo')
     name = models.CharField(null=False,max_length=100)
     horario = models.TimeField()
-    
+    repetir = models.CharField(null=False,max_length=100,default="")
+
     def __str__(self): return self.name
+
+# class Consumo(models.Model):
+#     dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='dispositivo_consumo')
+#     data = models.DateTimeField()
+#     consumo = models.FloatField()
