@@ -3,6 +3,7 @@ from django.http import JsonResponse
 import json
 from .models import Dispositivo
 from django.http import HttpResponseBadRequest
+from datetime import datetime
 
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -31,5 +32,10 @@ class OnOff(View):
         dispositivo = Dispositivo.objects.filter(mac=mac).first()
 
         if dispositivo == None: return JsonResponse({"message":"MAC Address don't exist!"}, status=400)
-        elif not dispositivo.status: return JsonResponse({"status": 0 })
-        else: return JsonResponse({"status": 1 })
+        elif not dispositivo.status: msg = JsonResponse({"status": 0 })
+        else: msg = JsonResponse({"status": 1 })
+
+        dispositivo.last_ping = datetime.now()
+        dispositivo.save()
+
+        return msg

@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 
 class Dispositivo(models.Model):
     mac = models.CharField(primary_key=True,max_length=255)
@@ -7,6 +8,7 @@ class Dispositivo(models.Model):
     icon = models.CharField(max_length=255)
     status = models.BooleanField()
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    last_ping = models.DateTimeField(default=datetime.now)
 
     def __str__(self): return self.name
 
