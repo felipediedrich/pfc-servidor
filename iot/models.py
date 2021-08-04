@@ -18,6 +18,7 @@ class Agendamento(models.Model):
     name = models.CharField(null=False,max_length=100)
     horario = models.TimeField()
     repetir = models.CharField(null=False,max_length=100,default="")
+    modo = models.BooleanField(default=True)
 
     def __str__(self): return self.name
 
