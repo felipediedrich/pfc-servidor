@@ -4,6 +4,6 @@ from servidor.serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 class UserViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    # permission_classes = [IsAuthenticated, IsAdminUser]
     queryset = User.objects.all()
     serializer_class = UserSerializer
