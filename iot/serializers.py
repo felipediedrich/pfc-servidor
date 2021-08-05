@@ -10,4 +10,4 @@ class DispositivoSerializer(serializers.ModelSerializer):
 class AgendamentoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Agendamento
-        fields = ['url','id','name','horario','dispositivo','repetir']
+        fields = ['url','id','name','horario','dispositivo','repetir','modo']
