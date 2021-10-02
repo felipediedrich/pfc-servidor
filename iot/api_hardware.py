@@ -2,7 +2,7 @@ from django.views import View
 from django.http import JsonResponse
 import json
 from .models import Dispositivo, Agendamento
-from django.http import HttpResponseBadRequest
+from django.http import HttpResponseBadRequest, HttpResponse
 import pytz
 from datetime import datetime, timedelta
 from django.db.models import Q
@@ -52,4 +52,29 @@ class OnOff(View):
 
         if not dispositivo.status: return JsonResponse({"status": 0 })
         else: return JsonResponse({"status": 1 })
+
+@method_decorator(csrf_exempt, name='dispatch')
+class OnOff_Test(View):
+
+    def get(self, request, mac):
+        dispositivo = Dispositivo.objects.filter(mac=mac).first()
+
+        if dispositivo == None: return HttpResponse("MAC Address don't exist!", status=400)
+
+        # Parameters
+        last_ping = dispositivo.last_ping.astimezone(pytz.timezone('America/Sao_Paulo')).time()
+        now = datetime.now().time()
+        weekday = str((datetime.now() + timedelta(days=1)).weekday())
+
+        agendamento = Agendamento.objects.filter(dispositivo__mac = mac,horario__gte = last_ping,horario__lte = now,repetir__contains = weekday).first()
+
+        if agendamento != None:
+            dispositivo.status = agendamento.modo
+            if "T" in agendamento.repetir: agendamento.delete()
+
+        dispositivo.last_ping = datetime.now()
+        dispositivo.save()
+
+        if not dispositivo.status: return HttpResponse("FALSE")
+        else: return HttpResponse("TRUE")
 
