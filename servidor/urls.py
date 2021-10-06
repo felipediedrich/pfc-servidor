@@ -3,7 +3,7 @@ from django.contrib import admin
 from rest_framework import routers
 from iot.api import DispositivoViewSet, AgendamentoViewSet
 from servidor.api import UserViewSet
-from iot.api_hardware import OnOff, OnOff_Test
+from iot.api_hardware import OnOff
 
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -17,6 +17,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
-    path("status/<mac>/", OnOff.as_view()),
-    path("statustest/<mac>/", OnOff_Test.as_view())
+    path("status/<mac>/", OnOff.as_view())
 ]
