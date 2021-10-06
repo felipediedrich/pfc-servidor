@@ -25,6 +25,7 @@ class Agendamento(models.Model):
 class Consumo(models.Model):
     id = models.AutoField(primary_key=True)
     dispositivo = models.ForeignKey('Dispositivo', on_delete=models.CASCADE,related_name='consumo')
+    horario = models.DateTimeField(default=datetime.now)
     corrente = models.FloatField(null=False)
 
 # class Consumo(models.Model):
