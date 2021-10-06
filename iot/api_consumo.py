@@ -14,6 +14,6 @@ class SeriesConsumo(View):
         if freq.lower() not in ['h','d','w','m']: return JsonResponse({"message":"Frequency not in ('h','w','d','m')"}, status=400)
     
         dados = Consumo.objects.filter(dispositivo__mac = mac).values('horario','corrente')
-        resample = pd.DataFrame(dados).resample(freq, on='horario').corrente.mean().fillna('NULL')
+        resample = pd.DataFrame(dados).resample(freq, on='horario').corrente.mean().round(2).fillna('NULL')
 
-        return JsonResponse({'x':resample.index.tolist(),'y':resample.round(2).tolist()})
+        return JsonResponse({'x':resample.index.tolist(),'y':resample.tolist()})
