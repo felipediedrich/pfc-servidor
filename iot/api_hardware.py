@@ -47,9 +47,6 @@ class OnOff(View):
             dispositivo.status = agendamento.modo
             if "T" in agendamento.repetir: agendamento.delete()
 
-        dispositivo.last_ping = datetime.now()
-        dispositivo.save()
-
         # Consumo
         if 'c' in request.GET:
             consumo = Consumo()
@@ -60,6 +57,13 @@ class OnOff(View):
                 consumo.save()
             except:
                 ...
+        
+        # Troca de Status
+        if 'e' in request.GET and request.GET['e'] == '1': dispositivo.status = True
+        elif 'e' in request.GET and request.GET['e'] == '0': dispositivo.status = False
+
+        dispositivo.last_ping = datetime.now()
+        dispositivo.save()
 
         if not dispositivo.status: return JsonResponse({"status": 0 })
         else: return JsonResponse({"status": 1 })
