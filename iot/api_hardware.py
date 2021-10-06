@@ -1,7 +1,7 @@
 from django.views import View
 from django.http import JsonResponse
 import json
-from .models import Dispositivo, Agendamento
+from .models import Dispositivo, Agendamento, Consumo
 from django.http import HttpResponseBadRequest, HttpResponse
 import pytz
 from datetime import datetime, timedelta
@@ -49,6 +49,17 @@ class OnOff(View):
 
         dispositivo.last_ping = datetime.now()
         dispositivo.save()
+
+        # Consumo
+        if 'c' in request.GET:
+            consumo = Consumo()
+            consumo.dispositivo = dispositivo
+            try:
+                consumo.corrente = float(request.GET['c'])
+                consumo.horario = datetime.now()
+                consumo.save()
+            except:
+                ...
 
         if not dispositivo.status: return JsonResponse({"status": 0 })
         else: return JsonResponse({"status": 1 })

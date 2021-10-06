@@ -7,6 +7,7 @@ class Dispositivo(models.Model):
     name = models.CharField(max_length=100)
     icon = models.CharField(max_length=255)
     status = models.BooleanField()
+    is_110 = models.BooleanField(default=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     last_ping = models.DateTimeField(default=datetime.now)
 
