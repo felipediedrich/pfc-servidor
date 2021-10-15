@@ -10,8 +10,10 @@ import pandas as pd
 class SeriesConsumo(View):
     def get(self, request, mac, freq):
 
+        freq = freq.lower()
+
         # Posible frequencies: H, D, M
-        if freq.lower() not in ['h','d','w','m']: return JsonResponse({"message":"Frequency not in ('h','w','d','m')"}, status=400)
+        if freq not in ['min','h','d','w','m']: return JsonResponse({"message":"Frequency not in ('min','h','d','w','m')"}, status=400)
     
         dados = Consumo.objects.filter(dispositivo__mac = mac).values('horario','corrente')
         is_110 = Dispositivo.objects.filter(mac = mac).values('is_110').first()['is_110']
@@ -22,5 +24,9 @@ class SeriesConsumo(View):
         else: resample*=220
 
         resample = resample.round(2).fillna('NULL')
+
+        lenght = {'min':60,'h':24,'d':30,'w':26,'m':24}
+
+        if resample.shape[0] > lenght[freq]: resample = resample.iloc[-lenght[freq]:]
 
         return JsonResponse({'x':resample.index.tolist(),'y':resample.tolist()})
